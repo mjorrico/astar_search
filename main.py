@@ -37,6 +37,14 @@ v = args["verbose"]
 env = gridEnvP1()
 env.load(filepath)
 env.initialize(start, goal)
-resulting_node = search.astar_tree_search(env, w, v)
+result = search.astar_tree_search(env, w, v)
 
-print(resulting_node)
+if result:
+	result_node = result[0]
+	result_frontier = result[1]
+	print("Path length: " + str(len(result_node.path)))
+	print("Path cost: " + str(result_node.cost))
+	print("Path: " + str(result_node.path))
+	print("Nodes generated: " + str(result_frontier.generated_nodes))
+else:
+	print("There is no path")

@@ -18,22 +18,19 @@ def select_best_node(env, frontier: Frontier, w: float) -> Node:
 
 def expand_tree_search(env, node: Node) -> list[Node]:
     child_list = []
-    for a in env.action_list(node.state):
-        new_state = a[0]
-        new_path = node.path + [a[0]]
-        new_cost = node.cost + a[1]
-        child_list.append(Node(new_state, new_path, new_cost))
+    for next_state, next_cost in env.action_list(node.state):
+        child_list.append(Node(next_state, node, node.cost + next_cost))
     return child_list
 
 def astar_tree_search(env, w: float, show_info: bool = False):
     f = Frontier()
-    f.add(Node(env.start_state, [env.start_state]))
-    while f.list: # while f isn't empty
+    f.add(Node(env.start_state))
+    while f.frontier_list: # while f isn't empty
         if show_info: print_info(f)
-        node = select_best_node(env, f, w)
-        if show_info: print(". Best node: " + str(node.state))
-        if node.state == env.goal_state: return node
-        for child in expand_tree_search(env, node):
+        best_node = select_best_node(env, f, w)
+        if show_info: print(". Best node: " + str(best_node.state))
+        if best_node.state == env.goal_state: return [best_node, f]
+        for child in expand_tree_search(env, best_node):
             f.add(child) # The rules are implemented in Frontier.add() method.
     return None
 

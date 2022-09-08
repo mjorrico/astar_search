@@ -34,8 +34,3 @@ class gridEnvP1:
     
     def action_list(self, state: int) -> list[tuple]:
         return self.state_actions[state]
-
-# For debugging purposes
-if __name__ == "__main__":
-    env = gridEnvP1()
-    env.load("data/100 nodes.csv")

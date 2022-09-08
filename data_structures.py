@@ -70,21 +70,3 @@ class FrontierIterator:
             self._index += 1
             return self._list[self._index - 1]
         raise StopIteration
-
-# For debugging purposes
-if __name__ == "__main__":
-    n1 = Node(1, None, 12)
-    n2 = Node(2, n1, 12)
-    n3 = Node(3, n2, 10)
-    n4 = Node(9, n3, 4)
-    print(n4)
-    f = Frontier()
-    # print(f.add(n1))
-    # print(f.add(n2))
-    # print(f.add(n3))
-    # print(f.add(n4))
-    # print(f.add(Node(2)))
-    # print(f.add(Node(2, n1, 2)))
-    # print(f)
-    # f.remove(Node(9))
-    # print(f)
